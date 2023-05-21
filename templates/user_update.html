@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+	input{
+		width: 100%;
+		height: 36px;
+		border-radius: 5px;
+		border:1px solid #ddd;
+		margin-bottom: 15px
+	}
+</style>
+<div class="appHeader " style="background-color: transparent;box-shadow: none;">
+    <div class="left">
+        <a href="{% url 'main:profile' %}" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+        Profile
+    </div>
+    <div class="right">
+        
+    </div>
+</div>
+<div id="appCapsule">
+	<div class="section mt-2 mb-5">
+        <div class="card p-4">
+		<form action="{% url 'main:user_update' %}" method="post" enctype="multipart/form-data">
+			<div class="profile-head">
+		        <div class="avatar">
+		            <img src="{{profile.photo.url}}" alt="avatar" class="imaged w64 rounded">
+		        </div>
+		        <div class="in">
+		            <h3 class="name">{{profile.user.first_name}} {{profile.user.last_name}}</h3>
+		             {{profile_form.photo}}
+		        </div>
+		    </div>
+
+            <div class="form-group boxed">
+                <div class="input-wrapper">
+                    {{form.first_name}}
+                </div>
+                <div class="input-wrapper">
+                    {{form.last_name}}
+                </div>
+                <div class="input-wrapper">
+                    {{form.email}}
+                </div>
+
+                <div>
+                	<button type="submit" class="btn btn-primary btn-block btn-lg">update</button>
+                </div>
+            </div>
+             {% csrf_token %}
+		</form>
+        </div>
+    </div>	   
+</div>
+
+
+
+{% endblock %}

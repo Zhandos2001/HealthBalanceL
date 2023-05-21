@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="appHeader " style="background-color: transparent;box-shadow: none;">
+    <div class="left">
+        <a href="{% url 'main:my_diary' %}" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+     Analyze your entries
+    </div>
+    <div class="right">
+        
+    </div>
+</div>
+<div class="section full " style="margin-top: 55px !important">
+    <div class="wide-block pt-2 pb-2" style="background-color: #aaf0d1; border: 1px solid;border-radius: 15px;padding: 17px 12px">
+        <div class="section-title">
+          Title: {{diary.title}}<br>
+          Description:  {{diary.text}}
+       
+
+   
+
+	    <div class="pt-2 pb-2 text-center">
+			<form method="post" action="{% url 'main:start_test' 1 %} text-center">
+			    {% csrf_token %}
+			    <button type="submit" class="btn btn-secondary" style="display: block;background-color: #30C08B !important;border-color:#30C08B !important ">Analyze your entries</button>
+                
+
+			</form>
+	    
+           </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

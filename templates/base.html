@@ -1,0 +1,79 @@
+<!doctype html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <title></title>
+    <meta name="description" content="Mobilekit HTML Mobile UI Kit">
+    <meta name="keywords" content="bootstrap 5, mobile template, cordova, phonegap, mobile, html" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icon/192x192.png">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="manifest" href="__manifest.json">
+</head>
+
+<body class="" style="background-color: #FFFFF0">
+
+
+
+
+    <!-- App Capsule -->
+    <div id="" class="pt-0">
+
+        {% block content %} {% endblock %}
+
+        <div class="appBottomMenu">
+            <a href="{%  url 'main:index' %}" class="item">
+                <div class="col">
+                    <ion-icon name="file-tray-full-outline" role="img" class="md hydrated" aria-label="file tray full outline"></ion-icon>
+                    <strong>Home</strong>
+                </div>
+            </a>
+            <a href="{% url 'main:my_todo_done' %}" class="item">
+                <div class="col">
+                    <ion-icon name="calendar-outline" role="img" class="md hydrated" aria-label="calendar outline"></ion-icon>
+                    <strong>Calendar</strong>
+                </div>
+            </a>
+            <a href="{% url 'main:diary_save' %}" class="item">
+                <div class="col">
+                    <div class="action-button large" style="background-color: #30C08B">
+                        <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
+                    </div>
+                </div>
+            </a>
+            <a href="{% url 'main:my_diary' %}" class="item">
+                <div class="col">
+                    <div class="col">
+                        <ion-icon name="browsers-outline"></ion-icon>
+                    </div>
+                    <strong>My diary</strong>
+                </div>
+            </a>
+            <a href="{% url 'main:profile' %}" class="item">
+                <div class="col">
+                    <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="people outline"></ion-icon>
+                    <strong>Profile</strong>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- * App Capsule -->
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Splide -->
+    <script src="{% static 'assets/js/plugins/splide/splide.min.js' %}"></script>
+    <!-- ProgressBar js -->
+    <script src="{% static 'assets/js/plugins/progressbar-js/progressbar.min.js' %}"></script>
+     <script src="{% static 'assets/js/lib/bootstrap.min.js' %}"></script>
+    
+
+</body>
+
+</html>

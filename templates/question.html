@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style type="text/css">
+	textarea{
+		width: 100%;
+		border-radius: 5px; border:1px solid #ddd;
+	}
+</style>
+<div class="appHeader " style="background-color: transparent;box-shadow: none;">
+    <div class="left">
+        <a href="{% url 'main:my_diary' %}" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+     {{ question.text }}
+    </div>
+    <div class="right">
+        
+    </div>
+</div>
+<div class="section full" style="margin-top: 55px !important">
+    <div class="wide-block pt-2 pb-2" style="background-color: transparent;">
+        <div class="section-title">Click the button below to start the analyze.</div>
+	    <div class="pt-2 pb-2 text-center">
+	    	
+			<form method="post" action="{% url 'main:submit_answer' %}">
+			    {% csrf_token %}
+			    <input type="hidden" name="question_id" value="{{ question.id }}">
+			    <textarea name="answer">{{ answer.text }}</textarea>
+			    <button type="submit" class="btn btn-secondary" style="display: block;background-color: #30C08B !important;border-color:#30C08B !important ">Next</button>
+			</form>
+	    </div>
+    </div>
+</div>
+
+{% endblock %}

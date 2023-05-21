@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- App Header -->
+    <div class="appHeader bg-primary scrolled">
+        <div class="left">
+            <a href="index.html#" class="headerButton" data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel">
+                <ion-icon name="menu-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">
+            Diary
+        </div>
+        <div class="right">
+            <a href="index.html#" class="headerButton toggle-searchbox">
+                <ion-icon name="search-outline"></ion-icon>
+            </a>
+        </div>
+    </div>
+    <!-- * App Header -->
+
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="header-large-title">
+            <h1 class="title">Diary</h1>
+        </div>
+
+        
+        <div class="section mt-3">
+            <!-- carousel multiple -->
+            <div class="" style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div class="" style="width: 48%">
+                    <div class="card text-center" style="background-color: #EFE0D5">
+                        <img src="{% static 'assets/img/home1.png' %}" style="width: 75px; margin:13px auto" class="card-img-top" alt="image">
+                        <div class="card-body pt-0">
+                            <a href="{% url 'main:daily_emotion_mood_choose' %}" style="color: #000;font-size: 20px; font-weight: 600" class="mb-0">Daily check-in</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="" style="width: 48%">
+                    <div class="card text-center" style="background-color: #EFE0D5">
+                        <img src="{% static 'assets/img/home2.png' %}" style="width: 75px; margin:13px auto" class="card-img-top" alt="image">
+                        <div class="card-body pt-0">
+                            <a href="{% url 'main:my_todo' %}" style="color: #000;font-size: 20px; font-weight: 600" class="mb-0">To-do</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section mt-3 mb-3">
+                <div class="content-box" style="display: flex;justify-content: space-between;align-items: center; background: #30C08B;padding: 15px;border-radius: 12px;display: flex;">
+                    <div class="content color-white content-left">
+                        <h5 class="title-item color-white" style="font-weight: 500;color: #383e50;margin-bottom: 5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; color: #fff;font-size: 21px">Another day, another story!</h5>
+                    </div>
+                    <div class="content content-right" style="width: 40px;height: 40px;font-size: 22px;padding: 0;background: #30C08B;border-radius: 8px;padding: 0 15px;height: 45px;line-height: 45px;font-size: 14px;font-weight: 500;color: #fff;text-transform: none;">
+                        <a class="button button-icon-large" class="btn btn-secondary" href="{% url 'main:daily_emotion_mood_choose' %}" style="font-size:24px; color: #fff">
+                           >
+                        </a>
+                    </div>
+                </div>   
+        </div>
+       
+
+        <div class="section mt-3 mb-3">
+            <div class="header-large-title">
+                <h4 class="subtitle" style="font-size: 23px;color: #000;font-weight: 600;margin-bottom: 9px;">Mood Story</h4>
+            </div>
+            <div class="row">
+            	{% for daily_emotion in daily_emotions %}
+                <div class="col-sm-12" style="margin-bottom: 10px;">
+                    <div class="card" >
+                        <div class="card-body" style="display: flex; flex-direction: row; align-items: center;text-align: left;">
+                            <div style="margin-right: 15px;">
+                                {% if daily_emotion.mood == 'Sad' %}
+                                <img src="{% static 'assets/img/image 19.png' %}" style="width: 75px;">
+                                {% elif daily_emotion.mood == 'happy' %}
+                                <img src="{% static 'assets/img/image 17.png' %}" style="width: 75px;">
+                                {% elif daily_emotion.mood == 'Ok' %}
+                                <img src="{% static 'assets/img/image 20.png' %}" style="width: 75px;">
+                                {% elif daily_emotion.mood == 'Pretty Good' %}
+                                <img src="{% static 'assets/img/image 21.png' %}" style="width: 75px;">
+                                {% elif daily_emotion.mood == 'Awful' %}
+                                <img src="{% static 'assets/img/image 23.png' %}" style="width: 75px;">
+                                {% endif %}
+                            </div>
+                            <div>
+                                <h6 class="second-title" style="font-weight: 600; font-size: 15px;">{{ daily_emotion.date|date:"D"|title }}
+                                </h6>
+                                <span>{{ daily_emotion.mood }}, {{ daily_emotion.reason|slice:":10" }}...</span>
+                                <p>{{ daily_emotion.date|date:"d.m" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+
+        <!-- app footer -->
+        <div class="appFooter">
+            <div class="footer-title">
+                Copyright © <span class="yearNow"></span>. All Rights Reserved.
+            </div>
+
+            <div class="mt-2">
+                <a href="index.html#" class="btn btn-icon btn-sm btn-facebook">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+                <a href="index.html#" class="btn btn-icon btn-sm btn-twitter">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+                <a href="index.html#" class="btn btn-icon btn-sm btn-linkedin">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+                <a href="index.html#" class="btn btn-icon btn-sm btn-instagram">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+                <a href="index.html#" class="btn btn-icon btn-sm btn-whatsapp">
+                    <ion-icon name="logo-whatsapp"></ion-icon>
+                </a>
+                <a href="index.html#" class="btn btn-icon btn-sm btn-secondary goTop">
+                    <ion-icon name="arrow-up-outline"></ion-icon>
+                </a>
+            </div>
+
+        </div>
+        <!-- * app footer -->
+
+    </div>
+    <!-- * App Capsule -->
+
+    <div class="appBottomMenu">
+        <a href="{%  url 'main:index' %}" class="item">
+            <div class="col">
+                <ion-icon name="file-tray-full-outline" role="img" class="md hydrated" aria-label="file tray full outline"></ion-icon>
+                <strong>Home</strong>
+            </div>
+        </a>
+        <a href="{% url 'main:my_todo_done' %}" class="item active">
+            <div class="col">
+                <ion-icon name="calendar-outline" role="img" class="md hydrated" aria-label="calendar outline"></ion-icon>
+                <strong>Calendar</strong>
+            </div>
+        </a>
+        <a href="{% url 'main:diary_save' %}" class="item">
+            <div class="col">
+                <div class="action-button large" style="background-color: #30C08B">
+                    <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
+                </div>
+            </div>
+        </a>
+        <a href="{% url 'main:my_diary' %}" class="item">
+            <div class="col">
+                <div class="col">
+                    <ion-icon name="browsers-outline"></ion-icon>
+                </div>
+                <strong>My diary</strong>
+            </div>
+        </a>
+        <a href="{% url 'main:profile' %}" class="item">
+            <div class="col">
+                <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="people outline"></ion-icon>
+                <strong>Profile</strong>
+            </div>
+        </a>
+    </div>
+  
+    <!-- App Sidebar -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarPanel">
+        <div class="offcanvas-body">
+            <!-- profile box -->
+            <div class="profileBox">
+                <div class="in">
+                    <strong>{{ request.user }}</strong>
+                    </div>
+                </div>
+                <a href="index.html#" class="close-sidebar-button" data-bs-dismiss="offcanvas">
+                    <ion-icon name="close"></ion-icon>
+                </a>
+            </div>
+            <!-- * profile box -->
+
+            <ul class="listview flush transparent no-line image-listview mt-2">
+                <li>
+                    <a href="{%  url 'main:index' %}" class="item">
+                        <div class="icon-box bg-primary">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </div>
+                        <div class="in">
+                            Home
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'main:my_todo' %}" class="item">
+                        <div class="icon-box bg-primary">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                        </div>
+                        <div class="in">
+                            Calendar
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'login' %}" class="item">
+                        <div class="icon-box bg-primary">
+                            <ion-icon name="browsers-outline"></ion-icon>
+                        </div>
+                        <div class="in">
+                            Logout
+                        </div>
+                    </a>
+                </li>
+               
+            </ul>
+
+            
+        </div>
+        <!-- sidebar buttons -->
+        <div class="sidebar-buttons">
+            <a href="index.html#" class="button">
+                <ion-icon name="person-outline"></ion-icon>
+            </a>
+            
+            <a href="index.html#" class="button">
+                <ion-icon name="log-out-outline"></ion-icon>
+            </a>
+        </div>
+        <!-- * sidebar buttons -->
+    </div>
+    <!-- * App Sidebar -->
+<!-- <a href="{% url 'main:daily_emotion_mood_choose' %}">+ Another day, another story!</a><br><br>
+<a href="{% url 'main:my_todo' %}">To-Do</a>
+ -->
+{% endblock %}

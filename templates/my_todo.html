@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="appHeader bg-primary text-light">
+    <div class="left">
+        <a href="{% url 'main:index' %}" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">Add To-Do</div>
+    <div class="right">
+    </div>
+</div>
+<div id="appCapsule">
+	<div class="section full mt-1">
+	    <div class="section-title">Add To-Do
+	    	<a href="{% url 'main:my_todo_add' %}" class="btn btn-success me-1 mb-1">+</a>
+	    </div>
+	    <div class="wide-block pt-2 pb-2">
+	    	<form action="{% url 'main:my_todo_done' %}" method="post">
+			  {% csrf_token %}
+			  {% for todo in my_todo.todo.all %}
+			  <div style="background: rgba(58, 192, 139, 0.15);border: 1px solid #30C08B;border-radius: 15px;height: 61px; padding: 17px 12px; margin-bottom: 5px">
+			  <input style="width: 20px ; height:18px; margin-right: 7px; "  type="checkbox" name="todo_list[]" value="{{todo.id|json_encode}}" {% is_my_todo_done_checked todo.id request.user %}>{{todo.title}}<br>
+			  
+			</div>
+			{% endfor %}
+			  <input type="submit" class="btn btn-primary me-1 mb-1" value="SAVE">
+			</form>
+	    </div>
+	</div>
+</div>
+{% endblock %}

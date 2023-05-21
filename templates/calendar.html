@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load my_tags %}
+{% load static %}
+{% block content %}
+<script src="{% static 'assets/js/lib/bootstrap.min.js' %}"></script>
+<div class="appHeader " style="background-color: transparent;box-shadow: none;">
+    <div class="left">
+        <a href="{% url 'main:index' %}" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+        Calendar
+    </div>
+    <div class="right">
+        
+    </div>
+</div>
+<!-- * App Header -->
+<div class="section full" style="margin-top: 55px !important">
+    <div class="wide-block pt-2 pb-2" style="background-color: transparent;">
+
+        <ul class="nav nav-tabs capsuled" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab" aria-selected="true">
+                    Daily check in
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab" aria-selected="false">
+                    Habits
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content mt-2">
+            <div class="tab-pane fade active show" id="home" role="tabpanel">
+                Last 7 days your mood was: <br>
+                <div style="display: flex;margin-bottom: 20px;margin-top: 20px;overflow-y: scroll;justify-content: space-between;">
+                    <div style="background-color: #EFE0D5;border-radius: 10px;padding: 5px; text-align: center;margin-right: 5px;">
+                        <img src="{% static 'assets/img/image 17.png' %}" style="width: 65px;">
+                        <span style="display: block;font-size: 14px">{{happy_count}}</span> happy
+                    </div>
+                    <div style="background-color: #EFE0D5;border-radius: 10px;padding: 5px; text-align: center;margin-right: 5px;">
+                        <img src="{% static 'assets/img/image 19.png' %}" style="width: 65px;">
+                        <span style="display: block;font-size: 14px">{{sad_count}}</span>  Sad
+                    </div>
+                    <div style="background-color: #EFE0D5;border-radius: 10px;padding: 5px; text-align: center;margin-right: 5px;">
+                        <img src="{% static 'assets/img/image 20.png' %}" style="width: 65px;">
+                        <span style="display: block;font-size: 14px">{{ok_count}}</span>  Ok
+                    </div>
+                    <div style="background-color: #EFE0D5;border-radius: 10px;padding: 5px; text-align: center;margin-right: 5px;">
+                        <img src="{% static 'assets/img/image 21.png' %}" style="width: 65px;">
+                        <span style="display: block;font-size: 14px">{{pretty_good_count}}</span>  Pretty Good
+                    </div>
+                    <div style="background-color: #EFE0D5;border-radius: 10px;padding: 5px; text-align: center;margin-right: 5px;">
+                        <img src="{% static 'assets/img/image 23.png' %}" style="width: 65px;">
+                       <span style="display: block;font-size: 14px"> {{awful_count}}</span>  Awful
+                    </div>
+                </div>
+                
+                <canvas id="myChart" width="500" height="300"></canvas>
+
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel">
+                <div class="section-title">Done list 
+                <a href="{% url 'main:my_todo' %}" style="color: #000;font-size: 17px; font-weight: 500;background: #30C08B;padding: 4px 8px;border: 1px solid;border-radius: 15px;" class="mb-0">To-do</a></div>
+                {% for todo_done in todo_done_list %}
+                
+                {% for todo in todo_done.my_todo.all %}
+                <div style="background: rgba(48, 192, 139, 0.15);border: 1px solid #30C08B;border-radius: 15px;height: 91px; padding: 17px 12px; margin-bottom: 15px">
+                    <span style="display: block;">{{todo_done.date}}</span>
+                    {{todo.title}}
+                </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<br><br><br>
+<!-- <a class="btn btn-secondary" href="{% url 'main:my_todo_done' %}">Daily check in</a> <a class="btn btn-success" href="/main/my/to/do">Habits</a>
+<br><br><br>
+
+<canvas id="myChart" width="500" height="300"></canvas>
+
+<div class="appHeader bg-primary scrolled">
+    <div class="left">
+        <a href="{% url 'main:index' %}" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">Calendar</div>
+    <div class="right">
+    </div>
+</div>
+<div id="appCapsule">
+	<div class="section full mt-1">
+	    <div class="section-title">Done list 
+	    	
+	    </div>
+	    {% for todo_done in todo_done_list %}
+	    <span style="margin-left: 15px">{{todo_done.date}}</span>
+	    {% for todo in todo_done.my_todo.all %}
+	    <ul class="listview simple-listview">
+            <li> {{todo.title}}</li>
+        </ul>
+        {% endfor %}
+        {% endfor %}
+	</div>
+</div> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    $(document).ready(function(){
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var averageMoods = {{ average_moods|safe }};
+        var daysOfWeek = {{ days_of_week|safe }};
+
+        // Find the index of the column with the largest value
+        var maxIndex = averageMoods.indexOf(Math.max(...averageMoods));
+
+        var dataWithThreshold = averageMoods.map(function(value) {
+            return value === 1 ? null : value;
+        });
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: daysOfWeek,
+                datasets: [{
+                    label: 'Average Mood',
+                    data: dataWithThreshold ,
+                    backgroundColor: averageMoods.map((value, index) => {
+                        if (index === maxIndex) {
+                            return 'darkgreen';
+                        } else if (value <= 2) {
+                            return 'purple';
+                        } else {
+                            return 'darkgreen';
+                        }
+                    }),
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 5,
+                        ticks: {
+                            stepSize: 1,
+                            callback: function(value, index, values) {
+                                switch (value) {
+                                    case 1:
+                                        return 'Awful';
+                                    case 2:
+                                        return 'Sad';
+                                    case 3:
+                                        return 'Ok';
+                                    case 4:
+                                        return 'Pretty Good';
+                                    case 5:
+                                        return 'Happy';
+                                    default:
+                                        return value;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
+

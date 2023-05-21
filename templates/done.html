@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="appHeader " style="background-color: transparent;box-shadow: none;">
+    <div class="left">
+        <a href="{% url 'main:index' %}" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+     Done
+    </div>
+    <div class="right">
+        
+    </div>
+</div>
+<div class="section full" style="margin-top: 55px !important">
+    <div class="wide-block pt-2 pb-2" style="background-color: transparent;">
+        <div class="section-title">Well Done! You managed to fill another check in.</div>
+	    <div class="pt-2 pb-2 text-center">
+	    	<img src="{% static 'assets/img/image24.png' %}">
+	    	<a href="{% url 'main:index' %}"  class="btn btn-secondary" style="display: block;background-color: #30C08B !important;border-color:#30C08B !important ">
+				
+				GO HOME
+			</a>
+	    </div>
+    </div>
+</div>
+
+{% endblock %}

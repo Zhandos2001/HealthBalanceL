@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="appHeader " style="background-color: transparent;box-shadow: none;">
+    <div class="left">
+        
+    </div>
+    <div class="pageTitle">
+       Which emotions resonate with you right now?
+    </div>
+    <div class="right">
+        
+    </div>
+</div>
+<div class="section full" style="margin-top: 55px !important">
+    <div class="wide-block pt-2 pb-2" style="background-color: transparent;">
+        <div class="login-form">
+            <div class="section mt-2">
+                <h1>Which emotions resonate with you right now?</h1>
+            </div>
+            <div class="section mt-4 mb-5">
+                <form action="{% url 'main:daily_emotion_reason' %}" method="GET">
+                    {% csrf_token %}
+                    {% for emotion_resonate in emotions_resonate %}
+                    <div class="form-group basic">
+                        <div class="card">
+                            <div style="display: flex;justify-content: space-around;align-items: center; padding-top: 20px;padding-bottom: 20px;"> 
+                                <input type="checkbox" name="emotions[]" value="{{emotion_resonate.id}}">{{emotion_resonate.title}}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <input type="hidden" name="mood" value="{{mood}}">
+                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="NEXT">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="appHeader " style="background-color: transparent;box-shadow: none;">
+    <div class="left">
+        <a href="{% url 'main:index' %}" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+        How are you?
+    </div>
+    <div class="right">
+        
+    </div>
+</div>
+<div class="section full" style="margin-top: 55px !important">
+    <div class="wide-block pt-2 pb-2" style="background-color: transparent;">
+        <div class="login-form">
+            <div class="section mt-2">
+                <h3>How would you describe your current mood?</h3>
+            </div>
+            <div class="section mt-4 mb-5">
+                <form>
+                    <div class="form-group basic">
+                        <a href="{% url 'main:daily_emotion_resonate_choose' 'happy' %}">
+                            <div class="card">
+                                <div style="display: flex;align-items: center; padding-top: 20px;padding-bottom: 20px;">
+                                    <div style="width: 150px;"><img src="{% static 'assets/img/image 19.png' %}" style="width: 85px;"></div>
+                                    <div>Happy</div>
+                                    
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="form-group basic">
+                        <a href="{% url 'main:daily_emotion_resonate_choose' 'Pretty Good' %}">
+                            <div class="card">
+                                 <div style="display: flex;align-items: center; padding-top: 20px;padding-bottom: 20px;">
+                                    <div style="width: 150px;"><img src="{% static 'assets/img/image 21.png' %}" style="width: 85px;"></div>
+                                    <div>Pretty Good</div>
+                                    
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="form-group basic">
+                        <a href="{% url 'main:daily_emotion_resonate_choose' 'Ok' %}">
+                            <div class="card">
+                                 <div style="display: flex;align-items: center; padding-top: 20px;padding-bottom: 20px;">
+                                 
+                                    <div style="width: 150px;"><img src="{% static 'assets/img/image 20.png' %}" style="width: 85px;"></div>
+                                    <div>Ok</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="form-group basic">
+                        <a href="{% url 'main:daily_emotion_resonate_choose' 'Sad' %}">
+                            <div class="card">
+                                <div style="display: flex;align-items: center; padding-top: 20px;padding-bottom: 20px;">
+                                    <div style="width: 150px;"><img src="{% static 'assets/img/image 17.png' %}" style="width: 85px;"></div>
+                                    <div>Sad</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="form-group basic">
+                        <a href="{% url 'main:daily_emotion_resonate_choose' 'Awful' %}">
+                            <div class="card">
+                                 <div style="display: flex;align-items: center; padding-top: 20px;padding-bottom: 20px;">
+
+                                    <div style="width: 150px;"><img src="{% static 'assets/img/image 23.png' %}" style="width: 85px;"></div>
+
+                                    <div>Awful</div>                                    
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
